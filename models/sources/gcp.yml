@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: GCP Dataset                  # Nombre para esta fuente de datos
+    database: fluid-mind-476121-g8     # ID del proyecto en GCP
+    schema: lifestyle_data             # Dataset de BigQuery donde se almacenan los datos crudos
+    tables:
+      - name: full_data                # Nombre de la tabla de datos crudos
