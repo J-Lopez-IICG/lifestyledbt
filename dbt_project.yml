@@ -31,4 +31,4 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   lifestyledbt:          # This is the name of your project
-    +materialized: views  # This configures all models to be built as views
+    +materialized: view  # This configures all models to be built as views

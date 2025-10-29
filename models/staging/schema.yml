@@ -1,0 +1,172 @@
+version: 2
+
+models:
+  - name: stg_lifestyle
+    description: "Modelo que limpia y renombra los datos de la fuente full_data, preparando la información de salud y fitness."
+    columns:
+      - name: lifestyle_key
+        tests:
+          - unique
+          - not_null
+      - name: Edad
+        tests:
+          - not_null
+      - name: Genero
+        tests:
+          - not_null
+      - name: Peso
+        tests:
+          - not_null
+      - name: Altura
+        tests:
+          - not_null
+      - name: Maximo_Pulsaciones
+        tests:
+          - not_null
+      - name: Promedio_Pulsaciones
+        tests:
+          - not_null
+      - name: Pulsaciones_Reposo
+        tests:
+          - not_null
+      - name: Duracion_Sesion_Horas
+        tests:
+          - not_null
+      - name: Calorias_Quemadas
+        tests:
+          - not_null
+      - name: Tipo_Entrenamiento
+        tests:
+          - not_null
+      - name: Porcentaje_Grasa
+        tests:
+          - not_null
+      - name: Ingesta_Agua_Litros
+        tests:
+          - not_null
+      - name: Frecuencia_Entrenamiento_Por_Dia
+        tests:
+          - not_null
+      - name: Nivel_Experiencia
+        tests:
+          - not_null
+      - name: Indice_Masa_Corporal
+        tests:
+          - not_null
+      - name: Frecuencia_Comidas_Diarias
+        tests:
+          - not_null
+      - name: Ejercicio_Fisico
+        tests:
+          - not_null
+      - name: Carbohidratos
+        tests:
+          - not_null
+      - name: Proteinas
+        tests:
+          - not_null
+      - name: Grasas
+        tests:
+          - not_null
+      - name: Calorias
+        tests:
+          - not_null
+      - name: Nombre_Comida
+        tests:
+          - not_null
+      - name: Tipo_Comida
+        tests:
+          - not_null
+      - name: Tipo_Dieta
+        tests:
+          - not_null
+      - name: Azucar_Gramos
+        tests:
+          - not_null
+      - name: Sodio_Miligramos
+        tests:
+          - not_null
+      - name: Colesterol_Miligramos
+        tests:
+          - not_null
+      - name: Tamano_Porcion_Gramos
+        tests:
+          - not_null
+      - name: Metodo_Coccion
+        tests:
+          - not_null
+      - name: Tiempo_Preparacion_Minutos
+        tests:
+          - not_null
+      - name: Tiempo_Coccion_Minutos
+        tests:
+          - not_null
+      - name: Calificacion
+        tests:
+          - not_null
+      - name: Nombre_Ejercicio
+        tests:
+          - not_null
+      - name: Series
+        tests:
+          - not_null
+      - name: Repeticiones
+        tests:
+          - not_null
+      - name: Beneficios
+        tests:
+          - not_null
+      - name: Quema_Calorias_por_30_min
+        tests:
+          - not_null
+      - name: Grupo_Muscular_Objetivo
+        tests:
+          - not_null
+      - name: Equipo_Necesario
+        tests:
+          - not_null
+      - name: Nivel_Dificultad
+        tests:
+          - not_null
+      - name: Parte_Cuerpo
+        tests:
+          - not_null
+      - name: Tipo_Musculo
+        tests:
+          - not_null
+      - name: Entrenamiento
+        tests:
+          - not_null
+      - name: IMC_Calculado
+        tests:
+          - not_null
+      - name: Calorias_de_Macronutrientes
+        tests:
+          - not_null
+      - name: Porcentaje_Carbohidratos
+        tests:
+          - not_null
+      - name: Proteina_por_kg
+        tests:
+          - not_null
+      - name: Porcentaje_Reserva_FC
+        tests:
+          - not_null
+      - name: Porcentaje_Maximo_FC
+        tests:
+          - not_null
+      - name: Balance_Calorico
+        tests:
+          - not_null
+      - name: Masa_Magra_kg
+        tests:
+          - not_null
+      - name: Quema_Esperada
+        tests:
+          - not_null
+      - name: Quema_Calorias_por_30_min_bc
+        tests:
+          - not_null
+      - name: Quema_Calorias_Bin
+        tests:
+          - not_null

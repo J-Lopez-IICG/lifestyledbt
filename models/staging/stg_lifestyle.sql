@@ -1,5 +1,15 @@
 WITH source_data AS (
     SELECT 
+        {{ dbt_utils.generate_surrogate_key([
+            'Age', 
+            'Gender',
+            'Workout_Type',
+            'meal_name',
+            '`Name of Exercise`',
+            'Sets',
+            'Reps',
+            'serving_size_g'
+        ]) }} AS lifestyle_key,
         CAST(Age AS FLOAT64) AS Edad,
         CAST(Gender AS STRING) AS Genero,
         `Weight _kg_` AS Peso,
