@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Nivel_Dificultad', 'dim_difficulty_key') }}

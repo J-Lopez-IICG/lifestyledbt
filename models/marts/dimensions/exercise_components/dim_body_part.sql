@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Parte_Cuerpo', 'dim_body_part_key') }}

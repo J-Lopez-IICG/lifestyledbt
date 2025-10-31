@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Nivel_Experiencia', 'dim_experience_level_key') }}

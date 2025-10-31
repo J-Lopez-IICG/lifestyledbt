@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Metodo_Coccion', 'dim_cooking_method_key') }}

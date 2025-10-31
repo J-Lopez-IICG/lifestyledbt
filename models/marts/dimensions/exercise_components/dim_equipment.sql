@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Equipo_Necesario', 'dim_equipment_key') }}

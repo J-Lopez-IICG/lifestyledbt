@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Tipo_Entrenamiento', 'dim_workout_type_key') }}

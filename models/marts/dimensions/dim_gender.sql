@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Genero', 'dim_gender_key') }}

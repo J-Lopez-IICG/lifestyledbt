@@ -1,0 +1,1 @@
+{{ generate_dimension('stg_lifestyle', 'Tipo_Dieta', 'dim_diet_type_key') }}
