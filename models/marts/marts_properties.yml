@@ -1,0 +1,224 @@
+version: 2
+
+models:
+  # ====================================================================
+  # 1. TABLA DE HECHOS (FACT TABLE)
+  # ====================================================================
+  - name: fct_lifestyle
+    description: "Tabla de hechos central que registra las métricas de estilo de vida."
+    columns:
+      # --- Llave Primaria (PK) ---
+      - name: lifestyle_key
+        description: "Llave primaria de la tabla de hechos."
+        tests:
+          - unique
+          - not_null
+
+      # --- Llaves Foráneas (FKs) a Dimensiones Principales ---
+      - name: dim_exercise_key
+        description: "FK a la dimensión de ejercicio."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_exercise')
+                field: dim_exercise_key
+
+      - name: dim_meal_key
+        description: "FK a la dimensión de comida."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_meal')
+                field: dim_meal_key
+
+      - name: dim_gender_key
+        description: "FK a la dimensión de género."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_gender')
+                field: dim_gender_key
+      
+      - name: dim_experience_level_key
+        description: "FK a la dimensión de nivel de experiencia."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_experience_level')
+                field: dim_experience_level_key
+
+      - name: dim_workout_type_key
+        description: "FK a la dimensión de tipo de entrenamiento."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_workout_type')
+                field: dim_workout_type_key
+
+  # ====================================================================
+  # 2. DIMENSIONES "PADRE" (Las que tienen el copo de nieve)
+  # ====================================================================
+  - name: dim_exercise
+    description: "Dimensión de Ejercicios. Contiene las FKs a sus sub-dimensiones (copo de nieve)."
+    columns:
+      # --- PK ---
+      - name: dim_exercise_key
+        description: "Llave primaria para la dimensión de ejercicio."
+        tests:
+          - unique
+          - not_null
+      # --- Llave de Negocio ---
+      - name: Nombre_Ejercicio
+        description: "Nombre natural del ejercicio."
+        tests:
+          - unique
+          - not_null
+          
+      # --- FKs (Aquí se prueba el SNOWFLAKE) ---
+      - name: dim_equipment_key
+        description: "FK a la sub-dimensión de equipamiento."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_equipment')
+                field: dim_equipment_key
+
+      - name: dim_difficulty_key
+        description: "FK a la sub-dimensión de dificultad."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_difficulty')
+                field: dim_difficulty_key
+
+      - name: dim_muscle_group_key
+        description: "FK a la sub-dimensión de grupo muscular."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_muscle_group')
+                field: dim_muscle_group_key
+
+      - name: dim_body_part_key
+        description: "FK a la sub-dimensión de parte del cuerpo."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_body_part')
+                field: dim_body_part_key
+
+  - name: dim_meal
+    description: "Dimensión de Comidas. Contiene las FKs a sus sub-dimensiones (copo de nieve)."
+    columns:
+      # --- PK ---
+      - name: dim_meal_key
+        description: "Llave primaria para la dimensión de comida."
+        tests:
+          - unique
+          - not_null
+      # --- Llave de Negocio ---
+      - name: Nombre_Comida
+        description: "Nombre natural de la comida."
+        tests:
+          - unique
+          - not_null
+
+      # --- FKs (Aquí se prueba el SNOWFLAKE) ---
+      - name: dim_meal_type_key
+        description: "FK a la sub-dimensión de tipo de comida."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_meal_type')
+                field: dim_meal_type_key
+
+      - name: dim_diet_type_key
+        description: "FK a la sub-dimensión de tipo de dieta."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_diet_type')
+                field: dim_diet_type_key
+
+      - name: dim_cooking_method_key
+        description: "FK a la sub-dimensión de método de cocción."
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_cooking_method')
+                field: dim_cooking_method_key
+
+  # ====================================================================
+  # 3. DIMENSIONES "HIJAS" (Las hojas del copo de nieve)
+  # ====================================================================
+  
+  # --- Sub-dimensiones de Ejercicio ---
+  - name: dim_body_part
+    columns:
+      - name: dim_body_part_key
+        tests: [unique, not_null]
+      - name: Parte_Cuerpo
+        tests: [unique, not_null]
+        
+  - name: dim_difficulty
+    columns:
+      - name: dim_difficulty_key
+        tests: [unique, not_null]
+      - name: Nivel_Dificultad
+        tests: [unique, not_null]
+
+  - name: dim_equipment
+    columns:
+      - name: dim_equipment_key
+        tests: [unique, not_null]
+      - name: Equipo_Necesario
+        tests: [unique, not_null]
+
+  - name: dim_muscle_group
+    columns:
+      - name: dim_muscle_group_key
+        tests: [unique, not_null]
+      - name: Grupo_Muscular_Objetivo
+        tests: [not_null]
+
+  # --- Sub-dimensiones de Comida ---
+  - name: dim_cooking_method
+    columns:
+      - name: dim_cooking_method_key
+        tests: [unique, not_null]
+      - name: Metodo_Coccion
+        tests: [unique, not_null]
+
+  - name: dim_diet_type
+    columns:
+      - name: dim_diet_type_key
+        tests: [unique, not_null]
+      - name: Tipo_Dieta
+        tests: [unique, not_null]
+
+  - name: dim_meal_type
+    columns:
+      - name: dim_meal_type_key
+        tests: [unique, not_null]
+      - name: Tipo_Comida
+        tests: [unique, not_null]
+
+  # ====================================================================
+  # 4. OTRAS DIMENSIONES PRINCIPALES (Las que no tienen copo de nieve)
+  # ====================================================================
+  - name: dim_gender
+    columns:
+      - name: dim_gender_key
+        tests: [unique, not_null]

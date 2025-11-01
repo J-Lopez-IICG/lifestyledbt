@@ -1,22 +1,24 @@
 WITH stg AS (
-    -- 1. Obtenemos los atributos únicos por comida
-    SELECT DISTINCT
+    -- 1. Agrupar por la llave de negocio (Nombre_Comida)
+    SELECT 
         Nombre_Comida,
-        Tiempo_Preparacion_Minutos,
-        Tiempo_Coccion_Minutos,
-        Calificacion AS Calificacion_Comida,
+        ANY_VALUE(Tiempo_Preparacion_Minutos) AS Tiempo_Preparacion_Minutos,
+        ANY_VALUE(Tiempo_Coccion_Minutos) AS Tiempo_Coccion_Minutos,
+        ANY_VALUE(Calificacion) AS Calificacion_Comida,
         
         -- Campos de enlace para las sub-dimensiones
-        Tipo_Comida,
-        Tipo_Dieta,
-        Metodo_Coccion
+        ANY_VALUE(Tipo_Comida) AS Tipo_Comida,
+        ANY_VALUE(Tipo_Dieta) AS Tipo_Dieta,
+        ANY_VALUE(Metodo_Coccion) AS Metodo_Coccion
     FROM 
         {{ ref('stg_lifestyle') }}
     WHERE 
         Nombre_Comida IS NOT NULL
+    GROUP BY
+        Nombre_Comida
 ),
 
--- 2. Traemos las dimensiones "copo de nieve"
+-- 2. Traemos las dimensiones "copo de nieve" (esto no cambia)
 dim_meal_type AS (
     SELECT * FROM {{ ref('dim_meal_type') }}
 ),
@@ -27,7 +29,7 @@ dim_cooking_method AS (
     SELECT * FROM {{ ref('dim_cooking_method') }}
 )
 
--- 3. Unimos todo
+-- 3. Unimos todo (esto no cambia)
 SELECT
     {{ dbt_utils.generate_surrogate_key(['stg.Nombre_Comida']) }} AS dim_meal_key,
     stg.Nombre_Comida,

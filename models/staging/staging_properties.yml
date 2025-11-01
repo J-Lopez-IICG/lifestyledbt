@@ -14,7 +14,9 @@ models:
       - name: Genero
         tests:
           - not_null
-          - accepted_values: { values: ['Male', 'Female'] }
+          - accepted_values:
+              arguments: 
+                values: ['Male', 'Female']
       - name: Peso
         tests:
           - not_null
@@ -39,7 +41,9 @@ models:
       - name: Tipo_Entrenamiento
         tests:
           - not_null
-          - accepted_values: { values: ['Strength', 'Yoga', 'HIIT', 'Cardio'] }
+          - accepted_values:
+              arguments: # <-- CORRECIÓN
+                values: ['Strength', 'Yoga', 'HIIT', 'Cardio']
       - name: Porcentaje_Grasa
         tests:
           - not_null
@@ -79,11 +83,15 @@ models:
       - name: Tipo_Comida
         tests:
           - not_null
-          - accepted_values: { values: ['Lunch', 'Dinner', 'Breakfast', 'Snack'] }
+          - accepted_values:
+              arguments: # <-- CORRECIÓN
+                values: ['Lunch', 'Dinner', 'Breakfast', 'Snack']
       - name: Tipo_Dieta
         tests:
           - not_null
-          - accepted_values: { values: ['Paleo', 'Low-Carb', 'Vegetarian', 'Keto', 'Vegan', 'Balanced'] }
+          - accepted_values:
+              arguments: # <-- CORRECIÓN
+                values: ['Paleo', 'Low-Carb', 'Vegetarian', 'Keto', 'Vegan', 'Balanced']
       - name: Azucar_Gramos
         tests:
           - not_null
