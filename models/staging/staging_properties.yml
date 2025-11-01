@@ -1,5 +1,5 @@
 version: 2
-
+#dbt test -s path:models/staging
 models:
   - name: stg_lifestyle
     description: "Modelo que limpia y renombra los datos de la fuente full_data, preparando la información de salud y fitness."
